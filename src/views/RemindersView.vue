@@ -8,22 +8,22 @@
           <input type="radio" class="form-radio" name="options" value="" v-model="filters.type" />
           <BellIcon class="h-5 w-5" /> All
         </label>
-        <label :class="{ btn: true, 'btn-primary': filters.type === 'Birthday' }">
+        <label :class="{ btn: true, 'btn-primary': filters.type === 'birthday' }">
           <input
             type="radio"
             class="form-radio"
             name="options"
-            value="Birthday"
+            value="birthday"
             v-model="filters.type"
           />
           <CakeIcon class="h-5 w-5" /> Birthdays
         </label>
-        <label :class="{ btn: true, 'btn-primary': filters.type === 'Reach out' }">
+        <label :class="{ btn: true, 'btn-primary': filters.type === 'reach-out' }">
           <input
             type="radio"
             class="form-radio"
             name="options"
-            value="Reach out"
+            value="reach-out"
             v-model="filters.type"
           />
           <MessageCircleIcon class="h-5 w-5" /> Reach outs
@@ -47,12 +47,12 @@
       />
     </div>
 
-    <RemindersSegment :title="'Outstanding'" :reminders="filterRemindersBetween(-100, -1)" />
-    <RemindersSegment :title="'Today'" :reminders="filterRemindersBetween(0, 0)" />
-    <RemindersSegment :title="'Tomorrow'" :reminders="filterRemindersBetween(1, 1)" />
-    <RemindersSegment :title="'This Week'" :reminders="filterRemindersBetween(2, 7)" />
-    <RemindersSegment :title="'This Month'" :reminders="filterRemindersBetween(8, 30)" />
-    <RemindersSegment :title="'Next Month'" :reminders="filterRemindersBetween(31, 60)" />
+    <ReminderEntry :title="'Outstanding'" :reminders="filterRemindersBetween(-100, -1)" />
+    <ReminderEntry :title="'Today'" :reminders="filterRemindersBetween(0, 0)" />
+    <ReminderEntry :title="'Tomorrow'" :reminders="filterRemindersBetween(1, 1)" />
+    <ReminderEntry :title="'This Week'" :reminders="filterRemindersBetween(2, 7)" />
+    <ReminderEntry :title="'This Month'" :reminders="filterRemindersBetween(8, 30)" />
+    <ReminderEntry :title="'Next Month'" :reminders="filterRemindersBetween(31, 60)" />
   </main>
 </template>
 
@@ -61,7 +61,7 @@ import { onMounted, reactive } from 'vue'
 import { setTitle } from '../utils/Title'
 import { RepositoryFactory } from '../repositories/RepositoryFactory'
 import $bus from '../utils/Events'
-import RemindersSegment from '../components/RemindersSegment.vue'
+import ReminderEntry from '../components/ReminderEntry.vue'
 import { BellIcon } from 'lucide-vue-next'
 import { CakeIcon } from 'lucide-vue-next'
 import { MessageCircleIcon } from 'lucide-vue-next'
@@ -85,7 +85,6 @@ onMounted(() => {
   setTitle('Reminder')
   fetchReminders()
   $bus.$on('complete-reminder', (data) => {
-    console.log(data)
     completeReminder(data.reminder)
   })
   $bus.$on('delete-reminder', (data) => {
