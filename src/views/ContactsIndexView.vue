@@ -19,7 +19,7 @@
             <input
               type="text"
               id="search"
-              class="input input-ghost"
+              class="input input-ghost w-full"
               placeholder="Search..."
               ref="searchRef"
               v-model="filters.searchQuery"
@@ -94,9 +94,9 @@
         <button
           class="btn-warning btn-info btn-error btn-success btn-primary btn-neutral btn-white btn-secondary hidden"
         ></button>
-        <RouterLink to="/contacts/new" class="btn btn-primary btn-wide">
+        <RouterLink to="/contacts/new" class="btn btn-primary btn-wide my-3 md:mx-auto">
           <UserPlusIcon class="h-5 w-5" />
-          <span class="ml-2">Add a contact</span>
+          <span class="m-2">Add a contact</span>
         </RouterLink>
       </div>
     </div>
