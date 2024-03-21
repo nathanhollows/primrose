@@ -10,9 +10,19 @@
             tabindex="0"
             class="menu menu-sm gap-3 dropdown-content mt-3 z-30 p-2 shadow bg-base-200 rounded-box w-52"
           >
-            <TopBarLink to="/"> <HomeIcon /> Dashboard </TopBarLink>
             <TopBarLink to="/contacts"> <UsersIcon /> Contacts </TopBarLink>
-            <TopBarLink to="/groups"><ComponentIcon /> Groups </TopBarLink>
+            <TopBarLink to="/journal" class="icon-swap" :class="{ 'journal-saved': journalSaved }">
+              <BookOpenIcon width="20px" class="inactive" />
+              <BookOpenTextIcon width="20px" class="active" />
+              Journal
+            </TopBarLink>
+            <TopBarLink to="/reminders">
+              <div class="indicator">
+                <BellIcon width="20px" />
+                <span v-if="hasReminders" class="badge badge-xs badge-accent indicator-item"></span>
+              </div>
+              Reminders
+            </TopBarLink>
           </ul>
         </div>
         <RouterLink class="btn btn-ghost text-xl" to="/" active-class="btn-active">
