@@ -1,9 +1,9 @@
 <template>
-  <div class="w-3/5 mx-auto mt-10">
-    <h1 class="text-2xl font-semibold text-center my-10">Journal</h1>
+  <div class="md:w-3/5 mx-auto md:mt-10">
+    <h1 class="text-2xl font-semibold text-center mb-5 md:my-10">Journal</h1>
 
-    <form @keydown.ctrl.enter.prevent="addJournal" @submit.prevent="addJournal">
-      <div class="flex flex-row justify-between">
+    <form @keydown.ctrl.enter.prevent="saveJournal" @submit.prevent="saveJournal">
+      <div class="flex md:flex-row justify-between overflow-x-scroll flex-row-reverse w-100 py-3">
         <!-- A list of buttons with the previous weeks dates -->
         <button
           v-for="i in 7"
@@ -16,7 +16,11 @@
             {{ dateSmall(todayMinus(7 - i)) }}
           </small>
         </button>
-        <input type="date" v-model="journal.date" class="input input-bordered" />
+        <input
+          type="date"
+          v-model="journal.date"
+          class="input input-bordered min-w-fit md:mr-0 mr-3"
+        />
       </div>
 
       <JournalEditor
@@ -32,7 +36,13 @@
         Processing
       </div>
 
-      <button class="btn btn-primary w-4/5 mx-auto block mt-5" type="submit">Save</button>
+      <button
+        class="btn btn-primary w-4/5 mx-auto block mt-5"
+        type="submit"
+        :disabled="!journal.updated"
+      >
+        Save
+      </button>
     </form>
   </div>
 </template>
@@ -63,7 +73,8 @@ const journal = reactive({
   id: null,
   // date = local date in ISO format
   date: route.params.date || today(),
-  raw: ''
+  raw: '',
+  updated: false
 })
 
 onMounted(() => {
@@ -97,7 +108,16 @@ watch(
   { immediate: true }
 )
 
-async function addJournal() {
+watch(
+  () => journal.raw,
+  () => {
+    if (JSON.stringify(state.data.raw) != JSON.stringify(journal.raw)) {
+      journal.updated = true
+    }
+  }
+)
+
+async function saveJournal() {
   if (JSON.stringify(state.data.raw) === JSON.stringify(journal.raw)) {
     $bus.$emit('new-toast', {
       message: 'No changes made',
