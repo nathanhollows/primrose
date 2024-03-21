@@ -1,5 +1,5 @@
 <template>
-  <div class="w-3/5 m-auto">
+  <div class="md:w-3/5 mx-auto md:mt-10">
     <div class="divider">Settings</div>
     <div class="form-control">
       <label class="label cursor-pointer">
@@ -8,7 +8,7 @@
       </label>
     </div>
     <div class="divider">Theme</div>
-    <div class="grid grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-3">
+    <div class="grid md:grid-cols-3 gap-3">
       <button
         v-for="theme in themes"
         :key="theme"

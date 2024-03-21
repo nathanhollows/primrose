@@ -1,6 +1,6 @@
 <template>
   <div v-if="isLoaded">
-    <div class="flex align-middle justify-between items-center mb-9">
+    <div class="flex flex-col md:flex-row gap-5 align-middle justify-between items-center mb-9">
       <div class="flex align-middle items-center gap-3">
         <AvatarCircle
           :name="state.contact.data.firstName + ' ' + state.contact.data.lastName"
@@ -37,7 +37,7 @@
           <MessageSquarePlusIcon class="h-5 w-5" />
         </RouterLink>
 
-        <div class="dropdown dropdown-bottom dropdown-end">
+        <div class="dropdown md:dropdown-end dropdown-bottom">
           <div
             tabindex="0"
             role="button"
@@ -113,7 +113,7 @@
       </div>
     </div>
 
-    <div class="flex justify-between my-5 gap-5">
+    <div class="flex md:flex-row flex-col justify-between my-5 gap-5">
       <div
         class="card card-body cursor-pointer bg-primary glass shadow-md"
         @click="goToAddInteractionView"
@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <div class="flex flex-row">
+    <div class="flex flex-col md:flex-row gap-3">
       <div class="w-full">
         <p class="mb-3 text-xl font-semibold">Timeline</p>
         <InteractionsList :interactions="state.contact.data.interactions || []" />

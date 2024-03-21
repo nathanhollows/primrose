@@ -13,7 +13,7 @@
       <div
         v-for="reminder in reminders"
         :key="reminder.id"
-        class="flex flex-row justify-between items-center space-x-3 bg-white rounded-lg p-4 border join-item"
+        class="flex flex-row justify-between items-center space-x-3 bg-base-200 rounded-lg p-4 border border-base-300 join-item"
       >
         <div class="flex flex-row items-center space-x-3 grow">
           <CakeIcon v-if="reminder.type === 'birthday'" class="text-info h-5 w-5 mr-2" />
@@ -23,7 +23,7 @@
           />
           <MessageCircleIcon
             v-else-if="reminder.type === 'reach-out'"
-            class="text-warning-content h-5 w-5 mr-2"
+            class="text-content h-5 w-5 mr-2"
           />
           <BellRingIcon v-else class="text-primary-content h-5 w-5 mr-2" />
           <RouterLink :to="`/contacts/${reminder.contactId}`" class="link basis-40">

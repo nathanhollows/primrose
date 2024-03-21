@@ -1,7 +1,8 @@
 <template>
-  <div class="w-3/5 mx-auto mt-10">
-    <h1 class="text-2xl font-semibold text-center my-10">
-      Add interaction to {{ contact.firstName }} {{ contact.lastName }}
+  <div class="md:w-3/5 mx-auto md:mt-10">
+    <h1 class="text-2xl font-semibold text-center mb-5 md:my-10">
+      Add interaction to
+      <span class="inline-block"> {{ contact.firstName }} {{ contact.lastName }} </span>
     </h1>
 
     <form @keydown.ctrl.enter.prevent="addInteraction" @submit.prevent="addInteraction">

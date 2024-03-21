@@ -12,12 +12,12 @@
     </div>
   </div>
 
-  <ul>
+  <ul class="overflow-hidden list">
     <li v-for="gift in gifts" :key="gift.id" class="gift-item flex gap-3">
       {{ gift.name }}
       <a
         href="#"
-        class="cursor-pointer text-error hidden tooltip tooltip-top"
+        class="cursor-pointer text-error hidden tooltip tooltip-top md:ml-0 ml-auto"
         data-tip="Delete"
         @click.prevent="confirmDeleteGift(gift.id)"
       >
