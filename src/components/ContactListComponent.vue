@@ -11,7 +11,7 @@
             size="small"
             :color="contact.group.color"
           />
-          <span class="text-base dark:text-gray-200"
+          <span class="ml-3 text-base dark:text-gray-200"
             >{{ contact.firstName }} {{ contact.lastName }}
             <span v-if="contact.nickname" class="text-neutral-content text-sm"
               >({{ contact.nickname }})
