@@ -1,6 +1,6 @@
 <template>
   <TopBar />
-  <main class="max-w-screen-xl m-auto mt-24 p-3">
+  <main class="max-w-screen-xl m-auto mt-20 md:mt-24 p-3">
     <RouterView />
   </main>
   <ConfirmDeleteModal />
