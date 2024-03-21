@@ -29,6 +29,7 @@ export default {
         .split(' ')
         .map((word) => word[0])
         .join('')
+        .replace(/[^a-zA-Z]/g, '')
     },
     avatarClasses() {
       return {
