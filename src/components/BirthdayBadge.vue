@@ -8,7 +8,6 @@
 
 <script setup>
 import { GiftIcon } from 'lucide-vue-next'
-import { defineProps } from 'vue'
 
 // Define date prop for birthday badge
 const props = defineProps({
