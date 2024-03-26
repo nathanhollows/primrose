@@ -47,12 +47,9 @@
       />
     </div>
 
-    <ReminderEntry :title="'Outstanding'" :reminders="filterRemindersBetween(-100, -1)" />
+    <ReminderEntry :title="'Overdue'" :reminders="filterRemindersBetween(-100, -1)" />
     <ReminderEntry :title="'Today'" :reminders="filterRemindersBetween(0, 0)" />
-    <ReminderEntry :title="'Tomorrow'" :reminders="filterRemindersBetween(1, 1)" />
-    <ReminderEntry :title="'This Week'" :reminders="filterRemindersBetween(2, 7)" />
-    <ReminderEntry :title="'This Month'" :reminders="filterRemindersBetween(8, 30)" />
-    <ReminderEntry :title="'Next Month'" :reminders="filterRemindersBetween(31, 60)" />
+    <ReminderEntry :title="'Soon'" :reminders="filterRemindersBetween(1, 30)" />
   </main>
 </template>
 

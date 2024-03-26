@@ -13,7 +13,7 @@
       <div
         v-for="reminder in reminders"
         :key="reminder.id"
-        class="flex flex-row justify-between items-center space-x-3 bg-base-200 rounded-lg p-4 border border-base-300 join-item"
+        class="flex flex-row justify-between items-center space-x-3 bg-base-200 hover:bg-base-300 rounded-lg p-4 border border-base-300 join-item"
       >
         <div class="flex flex-row items-center space-x-3 grow">
           <CakeIcon v-if="reminder.type === 'birthday'" class="text-info h-5 w-5 mr-2" />
@@ -29,7 +29,15 @@
           <RouterLink :to="`/contacts/${reminder.contactId}`" class="link basis-40">
             {{ reminder.contact.firstName }} {{ reminder.contact.lastName }}
           </RouterLink>
-          <span>{{ reminder.note }}</span>
+          <span v-if="reminder.type != 'reach-out'">{{ reminder.note }} </span>
+          <span v-else-if="reminder.contact.lastInteractionDate">
+            Last contact was
+            <RelativeTime
+              :date="reminder.contact.lastInteractionDate"
+              v-if="reminder.type === 'reach-out' && reminder.contact.lastInteractionDate"
+            />.
+          </span>
+          <span v-else> No recorded interactions. </span>
           <BirthdayBadge v-if="reminder.type === 'birthday'" :date="reminder.contact.birthday" />
         </div>
         <button
@@ -65,6 +73,7 @@ import { SparklesIcon } from 'lucide-vue-next'
 import { CheckIcon } from 'lucide-vue-next'
 import { Trash2Icon } from 'lucide-vue-next'
 import $bus from '../utils/Events'
+import RelativeTime from './RelativeTime.vue'
 
 const props = defineProps({
   title: {
