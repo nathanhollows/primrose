@@ -86,8 +86,8 @@
             <div class="divider my-0 bg-transparent"></div>
             <li>
               <a
-                :class="state.contact.data.frequency === 'Disable' ? 'active' : ''"
-                @click.prevent="updateContactFrequency('Disable')"
+                :class="state.contact.data.frequency === 'Disabled' ? 'active' : ''"
+                @click.prevent="updateContactFrequency('Disabled')"
                 >Disable</a
               >
             </li>
@@ -123,17 +123,14 @@
       <div class="card card-body align-middle items-center bg-accent glass shadow-md">
         <div class="text-primary-content text-3xl m-auto">In touch</div>
       </div>
-      <div class="card card-body align-middle items-center bg-secondary glass shadow-md">
-        <div class="text-warning-content text-lg font-semibold">Last contact</div>
-        <div class="text-success-content text-3xl">
-          {{ formatDate(state.contact.data.lastInteractionDate) }}
-        </div>
-      </div>
     </div>
 
     <div class="flex flex-col md:flex-row gap-3">
       <div class="w-full">
-        <p class="mb-3 text-xl font-semibold">Timeline</p>
+        <div class="mb-3 flex justify-between align-bottom pr-14">
+          <span class="text-xl font-semibold">Timeline</span>
+          Last contact {{ formatDate(state.contact.data.lastInteractionDate) }}
+        </div>
         <InteractionsList :interactions="state.contact.data.interactions || []" />
       </div>
 
