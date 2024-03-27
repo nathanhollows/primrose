@@ -1,8 +1,7 @@
 <template>
-  <main class="p-4">
-    <!-- Filter Bar -->
-
-    <div class="flex justify-between items-center mb-6">
+  <main class="pb-4">
+    <!-- Filters -->
+    <div class="flex justify-between items-center mb-4">
       <div class="flex space-x-4 filter-menu">
         <label :class="{ btn: true, 'btn-primary': filters.type === '' }">
           <input type="radio" class="form-radio" name="options" value="" v-model="filters.type" />
@@ -47,9 +46,21 @@
       />
     </div>
 
-    <ReminderEntry :title="'Overdue'" :reminders="filterRemindersBetween(-100, -1)" />
-    <ReminderEntry :title="'Today'" :reminders="filterRemindersBetween(0, 0)" />
-    <ReminderEntry :title="'Soon'" :reminders="filterRemindersBetween(1, 30)" />
+    <RemindersList
+      :title="'Overdue'"
+      :reminders="filterRemindersBetween(-100, -1)"
+      :outline="'error'"
+    />
+    <RemindersList
+      :title="'Today'"
+      :reminders="filterRemindersBetween(0, 0)"
+      :outline="'warning'"
+    />
+    <RemindersList
+      :title="'Soon'"
+      :reminders="filterRemindersBetween(1, 30)"
+      :outline="'success'"
+    />
   </main>
 </template>
 
@@ -58,7 +69,7 @@ import { onMounted, reactive } from 'vue'
 import { setTitle } from '../utils/Title'
 import { RepositoryFactory } from '../repositories/RepositoryFactory'
 import $bus from '../utils/Events'
-import ReminderEntry from '../components/ReminderEntry.vue'
+import RemindersList from '../components/RemindersList.vue'
 import { BellIcon } from 'lucide-vue-next'
 import { CakeIcon } from 'lucide-vue-next'
 import { MessageCircleIcon } from 'lucide-vue-next'
