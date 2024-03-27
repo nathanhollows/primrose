@@ -1,14 +1,16 @@
 <template>
   <div class="chat chat-start" v-for="interaction in interactions" :key="interaction.id">
-    <div class="chat-header">
-      <time class="text-xs opacity-50">
-        {{ formatDate(interaction.createdAt) }} · {{ formatTime(interaction.createdAt) }}
-      </time>
-    </div>
+    <RouterLink :to="`/journal/${interaction.journal.date}`">
+      <div class="chat-header">
+        <time class="text-xs opacity-50">
+          {{ formatDate(interaction.createdAt) }} · {{ formatTime(interaction.createdAt) }}
+        </time>
+      </div>
 
-    <div class="chat-bubble">
-      {{ interaction.notes }}
-    </div>
+      <div class="chat-bubble">
+        {{ interaction.notes }}
+      </div>
+    </RouterLink>
 
     <TrashIcon
       class="w-4 cursor-pointer text-error tooltip tooltip-top"
